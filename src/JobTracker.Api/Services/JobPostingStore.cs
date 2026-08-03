@@ -8,5 +8,11 @@ public class JobPostingStore
 
     public void Add(JobPosting job) => _jobs.Add(job);
 
+    public void Update(JobPosting job)
+    {
+        _jobs.RemoveAll(j => j.Id == job.Id);
+        _jobs.Add(job);
+    }
+
     public IEnumerable<JobPosting> All() => _jobs;
 }
