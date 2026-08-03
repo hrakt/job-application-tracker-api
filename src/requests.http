@@ -1,0 +1,11 @@
+```
+### Create a job
+POST http://localhost:5035/jobs
+Content-Type: application/json
+
+{ "title": "Senior Frontend Engineer", "company": "Monkeyjump", "location": "Remote" }
+
+### List jobs
+GET http://localhost:5035/jobs
+
+

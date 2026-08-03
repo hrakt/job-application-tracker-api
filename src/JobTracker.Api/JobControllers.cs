@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using JobTracker.Api.Domain;
 
 namespace JobTracker.Api.Controllers;
 

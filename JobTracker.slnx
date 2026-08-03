@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <File Path="src\requests.http" />
     <Project Path="src/JobTracker.Api/JobTracker.Api.csproj" />
   </Folder>
 </Solution>

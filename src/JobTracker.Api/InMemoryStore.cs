@@ -1,3 +1,5 @@
+using JobTracker.Api.Domain;
+
 static class InMemoryStore
 {
     public static readonly List<JobPosting> Jobs = new();

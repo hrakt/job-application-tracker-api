@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
@@ -23,11 +24,6 @@ app.MapPost("/jobs/{id:guid}/applications", (Guid id, SubmitApplication request)
 app.MapGet("/jobs/{id:guid}/applications", (Guid id) => InMemoryStore.Applications.Where(a => a.JobPostingId == id));
 
 app.Run();
-
-public record JobPosting(Guid Id, string Title, string Company, string Location, DateTimeOffset PostedAt);
-
-public record CreateJobPosting(string Title, string Company, string Location);
-
 public record Application(
     Guid Id,
     Guid JobPostingId,
