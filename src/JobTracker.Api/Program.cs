@@ -1,13 +1,18 @@
 
+using JobTracker.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<JobPostingStore>();
 
 var app = builder.Build();
 app.MapControllers();
 
-app.MapPost("/jobs/{id:guid}/applications", (Guid id, SubmitApplication request) =>
+app.MapPost("/jobs/{id:guid}/applications", (Guid id, SubmitApplication request, JobPostingStore store) =>
 {
-    var jobFound = InMemoryStore.Jobs.Any(j => j.Id == id);
+    
+    var jobFound = store.All().Any(j => j.Id == id);
     if (!jobFound) return Results.NotFound();
 
     var application = new Application(
