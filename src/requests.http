@@ -1,11 +1,21 @@
-```
+
 ### Create a job
 POST http://localhost:5035/jobs
 Content-Type: application/json
 
-{ "title": "Senior Frontend Engineer", "company": "Monkeyjump", "location": "Remote" }
+{ "title": "Senior Frontend Engineer", "company": "Monkeyjump Two", "location": "Remote" }
 
 ### List jobs
 GET http://localhost:5035/jobs
 
+### Get one job
+GET http://localhost:5035/jobs/66c83562-70d1-447a-a725-e050c1254459
 
+### Apply to a job
+POST http://localhost:5035/jobs/66c83562-70d1-447a-a725-e050c1254459/applications
+Content-Type: application/json
+
+{ "candidateName": "Krak T" }
+
+### List applicants for a job
+GET http://localhost:5035/jobs/66c83562-70d1-447a-a725-e050c1254459/applications

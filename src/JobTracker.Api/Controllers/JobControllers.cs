@@ -1,22 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using JobTracker.Api.Domain;
+using JobTracker.Api.Services;
 
 namespace JobTracker.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class JobsController : ControllerBase
+public class JobsController(JobPostingStore store) : ControllerBase
 {
     [HttpGet]
     public ActionResult<IEnumerable<JobPosting>> GetJobs()
     {
-        return Ok(InMemoryStore.Jobs);
+        return Ok(store.All());
     }
 
     [HttpGet("{id:guid}")]
     public ActionResult<JobPosting> GetJob(Guid id)
     {
-        var job = InMemoryStore.Jobs.FirstOrDefault(j => j.Id == id);
+        var job = store.All().FirstOrDefault(j => j.Id == id);
         return job is null ? NotFound() : Ok(job);
     }
 
@@ -30,7 +31,7 @@ public class JobsController : ControllerBase
             request.Location,
             DateTimeOffset.UtcNow);
 
-        InMemoryStore.Jobs.Add(job);
+        store.Add(job);
         return CreatedAtAction(nameof(GetJob), new { id = job.Id }, job);
     }
 }
